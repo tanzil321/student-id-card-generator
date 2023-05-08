@@ -12,3 +12,4 @@ This peoject is made with java swing. Here we can print and save an ID Card.
 ## Team Members
 
 - [@Dalia Mim](https://github.com/Mimotuntuni)
+- [@Amrin Islam](https://github.com/amrin2016)

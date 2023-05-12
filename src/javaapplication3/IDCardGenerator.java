@@ -102,6 +102,7 @@ public class IDCardGenerator {
         
         
         JButton btnGenerateIDCard = new JButton("Generate ID Card");
+        btnGenerateIDCard.setBackground(Color.ORANGE);
         btnGenerateIDCard.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 generateIDCard();
@@ -149,7 +150,21 @@ public class IDCardGenerator {
             JOptionPane.showMessageDialog(frame, "Error loading photo", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        
+        //Draw Signature
+            try {
+            BufferedImage photo = ImageIO.read(new File("images/Signature240.png"));
+            BufferedImage resizedPhoto = new BufferedImage(120, 60, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D photoGraphics = resizedPhoto.createGraphics();
+            photoGraphics.drawImage(photo, 0, 0, 120, 60, null);
+            photoGraphics.dispose();
+            g.drawImage(resizedPhoto, 410, 300, null);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(frame, "Error loading photo", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+            
+            
         // Draw text
         g.setFont(new Font("Arial", Font.BOLD, 24));
         g.drawString("North Western University", 285, 75);
@@ -158,6 +173,8 @@ public class IDCardGenerator {
         g.drawString("ID: " + idField.getText(), 230, 170);
         g.drawString("Program: " + positionField.getText(), 230, 210);
         g.drawString("Phone: " + phoneField.getText(), 230, 250);
+        g.drawString("Signature of Vice-Chancellor", 380,380);
+        
 
         // Save ID card as an image
         try {
